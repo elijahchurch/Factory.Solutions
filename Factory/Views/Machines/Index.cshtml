@@ -12,9 +12,9 @@
     <p>No Machines have been added in the database.</p>
 }
 
-@foreach (Machine Machine in Model)
+@foreach (Machine machine in Model)
 {
-    <h4>@Html.ActionLink($"{Machine.Name}", "Details", "Machines")</h4>
+    <h4>@Html.ActionLink($"{machine.Name}", "Details", new {id = machine.MachineId})</h4>
 }
 
 <hr>

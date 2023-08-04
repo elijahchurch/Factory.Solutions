@@ -14,7 +14,7 @@
 }
 @foreach (Engineer engineer in ViewBag.Engineers)
 {
-    <h4>@Html.ActionLink($"{engineer.Name}", "Details", "Engineers")</h4>
+    <h4>@Html.ActionLink($"{engineer.Name}", "Details", "Engineers", new {id = engineer.EngineerId})</h4>
 }
 <hr>
 
@@ -23,9 +23,9 @@
 {
     <p> No Machines have been added in the database.</p>
 }
-@foreach (Machine Machine in ViewBag.Machines)
+@foreach (Machine machine in ViewBag.Machines)
 {
-    <h4>@Html.ActionLink($"{Machine.Name}", "Details", "Machines")</h4>
+    <h4>@Html.ActionLink($"{machine.Name}", "Details", "Machines", new {id = machine.MachineId})</h4>
 }
 <hr>
 
