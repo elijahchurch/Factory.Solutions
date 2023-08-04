@@ -1,0 +1,26 @@
+@{
+    Layout = "_Layout";
+}
+
+@model Factory.Models.Machine
+
+<h2>Add a Machine to the Database</h2>
+<hr>
+
+<p>@Html.ValidationMessageFor(model => model.Name, "", new { @class = "error"})</p>
+<p>@Html.ValidationMessageFor(model => model.Description, "", new { @class = "error"})</p>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.Name)
+    @Html.TextBoxFor(model => model.Name)
+    <br>
+    @Html.LabelFor(model => model.Description)
+    @Html.TextBoxFor(model => model.Description)
+    <br>
+    <input type="submit" value="Add Machine">
+}
+
+<hr>
+
+<p>@Html.ActionLink("Back to Manage Page","Index")</p>
