@@ -47,6 +47,7 @@ namespace Factory.Controllers
                         .Include(Engineers => Engineers.JoinEntities)
                         .ThenInclude(entry => entry.Machine)
                         .FirstOrDefault(entry => entry.EngineerId == id);
+                        ViewBag.Title = "Engineer Details";
             return View(model);
         }
     }
