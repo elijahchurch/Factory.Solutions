@@ -11,12 +11,11 @@
 {
     <p>No Engineers have been added in the database.</p>
 }
-<ul>
-    @foreach (Engineer engineer in Model)
-    {
-        <li>@Html.ActionLink($"{engineer.Name}", "Details", "Engineers")</li>
-    }
-</ul>
+@foreach (Engineer engineer in Model)
+{
+    <h4>@Html.ActionLink($"{engineer.Name}", "Details", "Engineers")</h4>
+}
+
 <hr>
 
 <p>@Html.ActionLink("Add an Engineer", "Create")</p>
