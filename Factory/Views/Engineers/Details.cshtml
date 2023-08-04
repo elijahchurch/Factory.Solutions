@@ -30,4 +30,6 @@
 <p>@Html.ActionLink("Add Machine Authorization", "AddMachine", new {id = @Model.EngineerId})</p>
 <p>@Html.ActionLink($"Edit {@Model.Name}'s info", "Edit", new {id = @Model.EngineerId})</p>
 <p>@Html.ActionLink($"Remove {@Model.Name} from Database", "Delete", new {id = @Model.EngineerId})</p>
+<hr>
 <p>@Html.ActionLink("Back to Engineers Page", "Index")</p>
+<p>@Html.ActionLink("Back to Home", "Index", "Home")</p>
