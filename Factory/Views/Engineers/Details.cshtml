@@ -1,0 +1,33 @@
+@{
+    Layout = "_Layout";
+}
+
+@using Factory.Models
+
+
+<h2> Engineer Details </h2>
+<hr>
+
+<h3>Name: @Model.Name</h3>
+<h3> Description:</h3>
+<p>@Model.Description</p>
+<h3>Machine's that @Model.Name is authorized to work on:</h3>
+@if (@Model.JoinEntities.Count == 0)
+{
+    <p>@Model.Name is currently not authorized to work on any machines. Click the "Add Machine Authorization" link found below to add a machine.</p>
+}
+@foreach (EngineerMachine entry in Model.JoinEntities)
+{
+    <h4>@entry.Machine.Name</h4>
+    @using (Html.BeginForm("DeleteJoin", "Engineers"))
+    {
+        @Html.Hidden("joinId", @entry.EngineerMachineId)
+        <input type="submit" value="Remove" />
+    }
+}
+<hr>
+
+<p>@Html.ActionLink("Add Machine Authorization", "AddMachine", new {id = @Model.EngineerId})</p>
+<p>@Html.ActionLink($"Edit {@Model.Name}'s info", "Edit", new {id = @Model.EngineerId})</p>
+<p>@Html.ActionLink($"Remove {@Model.Name} from Database", "Delete", new {id = @Model.EngineerId})</p>
+<p>@Html.ActionLink("Back to Engineers Page", "Index")</p>
