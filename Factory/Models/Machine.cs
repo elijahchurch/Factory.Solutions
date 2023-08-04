@@ -2,11 +2,11 @@ using System.Collections.Generic;
 
 namespace Factory.Models
 {
-    public class Engineer
+    public class Machine
     {
-        public int EngineerId { get; set;}
+        public int MachineId {get; set;}
         public string Name { get; set;}
         public string Description { get; set;}
-        public List<EnginnerMachine> JoinEntities {get;}
+        public List<EngineerMachine> JoinEntities {get;}
     }
 }
