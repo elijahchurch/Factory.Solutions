@@ -50,5 +50,27 @@ namespace Factory.Controllers
                         ViewBag.Title = "Machine Details";
             return View(model);
         }
+
+        public ActionResult Edit(int id)
+        {
+            Machine model = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
+            ViewBag.Title = "Edit Machine Information";
+            return View (model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Machine machine)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(machine);
+            }
+            else
+            {
+            _db.Machines.Update(machine);
+            _db.SaveChanges();
+            return RedirectToAction("Details", new {id = machine.MachineId});
+            }
+        }
     }
 }

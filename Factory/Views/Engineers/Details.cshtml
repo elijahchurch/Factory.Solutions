@@ -11,7 +11,7 @@
 <h3>Name: @Model.Name</h3>
 <h3> Description:</h3>
 <p>@Model.Description</p>
-<h3>Machine's that @Model.Name is authorized to work on:</h3>
+<h3>Machines that @Model.Name is authorized to work on:</h3>
 @if (@Model.JoinEntities.Count == 0)
 {
     <p>@Model.Name is currently not authorized to work on any machines. Click the "Add Machine Authorization" link found below to add a machine.</p>

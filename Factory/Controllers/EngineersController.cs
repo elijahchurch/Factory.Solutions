@@ -50,5 +50,27 @@ namespace Factory.Controllers
                         ViewBag.Title = "Engineer Details";
             return View(model);
         }
+
+        public ActionResult Edit(int id)
+        {
+            Engineer model = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+            ViewBag.Title = "Edit Engineer Information";
+            return View (model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Engineer engineer)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(engineer);
+            }
+            else
+            {
+            _db.Engineers.Update(engineer);
+            _db.SaveChanges();
+            return RedirectToAction("Details", new {id = engineer.EngineerId});
+            }
+        }
     }
 }
