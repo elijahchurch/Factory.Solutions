@@ -9,6 +9,7 @@
 
 <p>@Html.ValidationMessageFor(model => model.Name, "", new { @class = "error"})</p>
 <p>@Html.ValidationMessageFor(model => model.Description, "", new { @class = "error"})</p>
+<p>@Html.ValidationMessageFor(model => model.Condition, "", new {@class = "error"})</p>
 
 @using (Html.BeginForm())
 {
@@ -17,6 +18,13 @@
     <br>
     @Html.LabelFor(model => model.Description)
     @Html.TextBoxFor(model => model.Description)
+    <br>
+    <span>
+    @Html.RadioButtonFor(model => model.Condition, "Operational") Operational</span>
+    <span>
+    @Html.RadioButtonFor(model => model.Condition, "Malfunctioning") Malfunctioning</span>
+    <span>
+    @Html.RadioButtonFor(model => model.Condition, "Being Repaired") Being Repaired</span>
     <br>
     <input type="submit" value="Add Machine">
 }

@@ -11,6 +11,8 @@
 <h3>Name: @Model.Name</h3>
 <h3> Description:</h3>
 <p>@Model.Description</p>
+<h3> Current Status:</h3>
+<h5>@Model.Condition</h5>
 <h3>Engineers authorized to work on this machine:</h3>
 @if (@Model.JoinEntities.Count == 0)
 {

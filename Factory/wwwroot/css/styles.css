@@ -2,11 +2,7 @@ html {
   font-size: 14px;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
+
 
 html {
   position: relative;
@@ -21,4 +17,9 @@ body {
 
 .error {
   color: red;
+}
+
+input{
+  margin-bottom: 10px;
+  margin-left: 10px;
 }
