@@ -1,0 +1,30 @@
+@{
+    Layout = "_Layout";
+}
+
+@model Factory.Models.Machine
+
+<h2>Add Engineer Authorization</h2>
+<hr>
+
+<h4>Authorize an engineer to work on @Model.Name:</h4>
+
+@if(ViewBag.Engineers.Count == 0)
+{
+    <p>No engineers exist in the database. Create an engineer entry by going to the Engineer Management Page:</p>
+    <p>@Html.ActionLink("Manage Engineers", "Index", "Engineers")</p>
+}
+else
+{
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.MachineId)
+
+        @Html.Label("Authorize an Engineer:")
+        @Html.DropDownList("EngineerId")
+        <input type="submit" value="Save">
+    }
+}
+<hr>
+
+<p>@Html.ActionLink($"Back to {Model.Name}'s Detail Page", "Details", new {id = @Model.MachineId})</p>

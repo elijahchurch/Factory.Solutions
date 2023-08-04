@@ -1,0 +1,30 @@
+@{
+    Layout = "_Layout";
+}
+
+@model Factory.Models.Engineer
+
+<h2>Add Machine Authorization</h2>
+<hr>
+
+<h4>Authorize a machine for @Model.Name to work on:</h4>
+
+@if(ViewBag.Machines.Count == 0)
+{
+    <p>No machines exist in the database. Create a machine entry by going to the Machine Management Page:</p>
+    <p>@Html.ActionLink("Manage Machines", "Index", "Machines")</p>
+}
+else
+{
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.EngineerId)
+
+        @Html.Label("Authorize a Machine:")
+        @Html.DropDownList("MachineId")
+        <input type="submit" value="Save">
+    }
+}
+<hr>
+
+<p>@Html.ActionLink($"Back to {Model.Name}'s Detail Page", "Details", new {id = @Model.EngineerId})</p>

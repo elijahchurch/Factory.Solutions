@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Factory.Controllers
 {
-    public class EngineersController: Controller
+    public class EngineersController : Controller
     {
         private readonly FactoryContext _db;
         public EngineersController(FactoryContext db)
@@ -28,7 +28,7 @@ namespace Factory.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Engineer engineer )
+        public ActionResult Create(Engineer engineer)
         {
             if (!ModelState.IsValid)
             {
@@ -47,7 +47,7 @@ namespace Factory.Controllers
                         .Include(Engineers => Engineers.JoinEntities)
                         .ThenInclude(entry => entry.Machine)
                         .FirstOrDefault(entry => entry.EngineerId == id);
-                        ViewBag.Title = "Engineer Details";
+            ViewBag.Title = "Engineer Details";
             return View(model);
         }
 
@@ -55,7 +55,7 @@ namespace Factory.Controllers
         {
             Engineer model = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
             ViewBag.Title = "Edit Engineer Information";
-            return View (model);
+            return View(model);
         }
 
         [HttpPost]
@@ -67,9 +67,9 @@ namespace Factory.Controllers
             }
             else
             {
-            _db.Engineers.Update(engineer);
-            _db.SaveChanges();
-            return RedirectToAction("Details", new {id = engineer.EngineerId});
+                _db.Engineers.Update(engineer);
+                _db.SaveChanges();
+                return RedirectToAction("Details", new { id = engineer.EngineerId });
             }
         }
 
@@ -83,10 +83,33 @@ namespace Factory.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-        Engineer deleteTarget = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
-        _db.Engineers.Remove(deleteTarget);
-        _db.SaveChanges();
-        return RedirectToAction("Index");
+            Engineer deleteTarget = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+            _db.Engineers.Remove(deleteTarget);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult AddMachine(int id)
+        {
+            Engineer model = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+            ViewBag.Machines = _db.Machines.ToList();
+            ViewBag.Title = "Add Machine Authorization";
+            ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AddMachine(Engineer Engineer, int MachineId)
+        {
+            #nullable enable
+            EngineerMachine? joinEntity = _db.EngineerMachines.FirstOrDefault(join => (join.EngineerId == Engineer.EngineerId && join.MachineId == MachineId));
+            #nullable disable
+            if (joinEntity == null && MachineId != 0)
+            {
+                _db.EngineerMachines.Add(new EngineerMachine() { MachineId = MachineId, EngineerId = Engineer.EngineerId });
+                _db.SaveChanges();
+            }
+            return RedirectToAction("Details", new { id = Engineer.EngineerId });
         }
 
     }
