@@ -16,7 +16,7 @@
 
 ## Description:
 
-This application was made uitlizing C# and its .Net framework. The UI of the application lets the user create, edit, remove, and view data on  Engineers working at the factory and the Machines that are there. Engineers and Machines each have their own table in the database schema, and they have a many-to-many relationship to each other, with a join table (titled "EngineersMachines") that match an engineer and machine by there unique Ids. With the join table, an engineer can be added to or removed from a machine (and vise versa), and this information is displayed in the details page of a specific engineer or machine. 
+This application was made uitlizing C# and its .Net framework. The UI of the application lets the user create, edit, remove, and view data on  Engineers working at the factory and the Machines that are there. Engineers and Machines each have their own table in the database schema, and they have a many-to-many relationship to each other, with a join table (titled "EngineersMachines") that matches an engineer and machine by there unique Ids. With the join table, an engineer can be added to or removed from a machine (and vise versa), and this information is displayed in the details page of a specific engineer or machine. 
 
 
 ## Setup/ Installation Requirements
